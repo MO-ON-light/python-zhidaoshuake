@@ -142,13 +142,13 @@ def alert():#进程执行窗口问题
         action = ActionChains(open_edge)
         element1 = open_edge.find_element(By.XPATH,'//svg[@class="icon topic-option"]')
         element2 = open_edge.find_element(By.XPATH,'//button[@class="el-dialog__headerbtn"]')
-        action.click(element1)
-        action.click(element2)
+        action.click(element1).perform()
+        action.click(element2).perform()
     except TimeoutException:
         open_edge.implicitly_wait(1)
         open_edge.find_element(By.XPATH, '//div[@class="yidun_modal__header"]')
         WebDriverWait(open_edge, 86400, 0.5).until_not(ec.presence_of_element_located((By.XPATH, '//div[@class="yidun_modal__header"]')))
-    except NoSuchElementException:#没运行这个
+    except NoSuchElementException:
         pass
     time.sleep(0.1)
 
